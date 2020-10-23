@@ -1,7 +1,9 @@
 <?php
 namespace Pers0n4\XePlugin\Message;
 
+use Illuminate\Database\Schema\Blueprint;
 use Route;
+use Schema;
 use Xpressengine\Plugin\AbstractPlugin;
 
 class Plugin extends AbstractPlugin
@@ -53,6 +55,25 @@ class Plugin extends AbstractPlugin
     public function install()
     {
         // implement code
+        if (!Schema::hasTable('messages')) {
+            Schema::create('messages', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+
+                $table->string('id', 36);
+
+                $table->string('receiver_id', 36);
+                $table->string('sender_id', 36);
+
+                $table->string('title', 100);
+                $table->text('content');
+                $table->boolean('is_readed')->default(false);
+
+                $table->timestamp('created_at')->nullable()->index();
+                $table->timestamp('updated_at')->nullable()->index();
+
+                $table->primary('id');
+            });
+        }
     }
 
     /**
