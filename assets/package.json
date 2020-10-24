@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "npm run css:pre && npm run css:post && npm run css:purge",
+    "css:pre": "node-sass scss/main.scss css/main.css --omit-source-map-url --output-style compressed",
+    "css:post": "postcss css/main.css --output css/main.css --use autoprefixer --no-map",
+    "css:purge": "purgecss --css css/main.css --output css/main.css --content ../views/*.blade.php"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.0.1",
+    "bulma": "^0.9.1",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.1.4",
+    "postcss-cli": "^8.1.0",
+    "purgecss": "^3.0.0"
+  }
+}
