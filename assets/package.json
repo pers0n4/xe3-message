@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "npm run css:pre && npm run css:post && npm run css:purge",
+    "watch": "node-sass scss --output css --watch --output-style expanded --source-map-embed true",
     "css:pre": "node-sass scss/main.scss css/main.css --omit-source-map-url --output-style compressed",
     "css:post": "postcss css/main.css --output css/main.css --use autoprefixer --no-map",
     "css:purge": "purgecss --css css/main.css --output css/main.css --content ../views/*.blade.php"
