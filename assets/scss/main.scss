@@ -11,6 +11,14 @@
 .messages {
   table-layout: fixed;
 
+  p {
+    @include truncate;
+  }
+
+  :link {
+    color: $text;
+  }
+
   &__sender {
     display: block;
     @include truncate;
