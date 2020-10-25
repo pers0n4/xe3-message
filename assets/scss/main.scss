@@ -2,24 +2,27 @@
 
 @import "../node_modules/bulma/bulma.sass";
 
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .messages {
   table-layout: fixed;
 
   &__sender {
-    width: 10%;
+    display: block;
+    @include truncate;
   }
 
   &__content {
-    width: 100%;
+    width: percentage(9/ 12);
+    @include truncate;
   }
 
   &__date {
-    width: 160px;
-  }
-
-  td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    width: percentage(2 / 12);
+    @include truncate;
   }
 }
