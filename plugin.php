@@ -60,8 +60,8 @@ class Plugin extends AbstractPlugin
                 $table->engine = 'InnoDB';
 
                 $table->string('id', 36);
-                $table->string('receiver_id', 36);
-                $table->string('sender_id', 36);
+                $table->string('receiver_id', 36)->index();
+                $table->string('sender_id', 36)->index();
                 $table->text('content');
                 $table
                     ->timestamp('created_at')
