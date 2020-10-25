@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@import "../node_modules/bulma/bulma.sass";
+
+.messages {
+  table-layout: fixed;
+
+  &__sender {
+    width: 10%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__date {
+    width: 160px;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
