@@ -28,6 +28,16 @@ class Plugin extends AbstractPlugin
                 'as' => 'message::index',
                 'uses' => 'Pers0n4\XePlugin\Message\Controller@index',
             ]);
+
+            Route::get('/create', [
+                'as' => 'message::create',
+                'uses' => 'Pers0n4\XePlugin\Message\Controller@create',
+            ]);
+
+            Route::post('/', [
+                'as' => 'message::store',
+                'uses' => 'Pers0n4\XePlugin\Message\Controller@store',
+            ]);
         });
     }
 
