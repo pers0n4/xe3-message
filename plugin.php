@@ -22,17 +22,12 @@ class Plugin extends AbstractPlugin
 
     protected function route()
     {
-        // implement code
-
-        Route::fixed(
-            $this->getId(),
-            function () {
-                Route::get('/', [
-                    'as' => 'message::index','uses' => 'Pers0n4\XePlugin\Message\Controller@index'
-                ]);
-            }
-        );
-
+        Route::fixed('messages', function () {
+            Route::get('/', [
+                'as' => 'message::index',
+                'uses' => 'Pers0n4\XePlugin\Message\Controller@index',
+            ]);
+        });
     }
 
     /**

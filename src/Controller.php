@@ -1,23 +1,22 @@
 <?php
 namespace Pers0n4\XePlugin\Message;
 
+use Illuminate\Support\Facades\Auth;
 use XeFrontend;
 use XePresenter;
 use App\Http\Controllers\Controller as BaseController;
+use Pers0n4\XePlugin\Message\Models\Message;
 
 class Controller extends BaseController
 {
     public function index()
     {
-        $title = 'Message plugin';
+        XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
 
-        // set browser title
-        XeFrontend::title($title);
+        $messages = Message::where('receiver_id', Auth::id())->get();
 
-        // load css file
-        XeFrontend::css(Plugin::asset('assets/style.css'))->load();
-
-        // output
-        return XePresenter::make('message::views.index', ['title' => $title]);
+        return XePresenter::make('message::views.index', [
+            'messages' => $messages,
+        ]);
     }
 }
