@@ -1,3 +1,4 @@
+{{ XeFrontend::js('assets/core/xe-ui-component/js/xe-page.js')->appendTo('body')->load() }}
 @if ($messages->count())
 <table class="table is-fullwidth is-hoverable messages">
     <thead>
@@ -10,7 +11,11 @@
     <tbody>
         @foreach ($messages as $message)
         <tr>
-            <td><span class="messages__sender">{{ $message->sender->display_name }}</span></td>
+            <td>
+                <a href="#" data-toggle="xe-page-toggle-menu" data-url="{{ route('toggleMenuPage') }}"
+                    data-data='{!! json_encode(['id'=> $message->sender->id, 'type'=>'user'])
+                    !!}'><span class="messages__sender">{{ $message->sender->display_name }}</span></a>
+            </td>
             <td class="messages__content">{{ $message->content }}</td>
             <td class="messages__date">{{ $message->created_at }}</td>
         </tr>
