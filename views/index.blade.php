@@ -16,7 +16,9 @@
                     data-data='{!! json_encode(['id'=> $message->sender->id, 'type'=>'user'])
                     !!}'><span class="messages__sender">{{ $message->sender->display_name }}</span></a>
             </td>
-            <td class="messages__content">{{ $message->content }}</td>
+            <td class="messages__content">
+                <a href="{{ route('message::show', $message->id) }}" class="is-block"><p class="">{{ $message->content }}</p></a>
+            </td>
             <td class="messages__date">{{ $message->created_at }}</td>
         </tr>
         @endforeach

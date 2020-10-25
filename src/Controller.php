@@ -45,4 +45,11 @@ class Controller extends BaseController
 
         return redirect()->route('message::index');
     }
+
+    public function show($id)
+    {
+        XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
+
+        return XePresenter::make('message::views.show');
+    }
 }
