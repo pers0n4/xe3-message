@@ -1,9 +1,9 @@
 <?php
 namespace Pers0n4\XePlugin\Message;
 
-use Illuminate\Database\Schema\Blueprint;
 use Route;
 use Schema;
+use Illuminate\Database\Schema\Blueprint;
 use Xpressengine\Plugin\AbstractPlugin;
 use Pers0n4\XePlugin\Message\ToggleMenu\ToggleItem;
 

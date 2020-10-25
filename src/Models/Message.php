@@ -1,5 +1,4 @@
 <?php
-
 namespace Pers0n4\XePlugin\Message\Models;
 
 use Xpressengine\Database\Eloquent\DynamicModel;
@@ -18,7 +17,7 @@ class Message extends DynamicModel
         'content',
         'is_readed',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function sender()

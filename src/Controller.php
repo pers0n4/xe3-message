@@ -3,10 +3,10 @@ namespace Pers0n4\XePlugin\Message;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use XeFrontend;
-use XePresenter;
 use App\Facades\XeUser;
 use App\Http\Controllers\Controller as BaseController;
+use XeFrontend;
+use XePresenter;
 use Pers0n4\XePlugin\Message\Models\Message;
 
 class Controller extends BaseController

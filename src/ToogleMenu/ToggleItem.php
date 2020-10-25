@@ -1,5 +1,4 @@
 <?php
-
 namespace Pers0n4\XePlugin\Message\ToggleMenu;
 
 use Xpressengine\ToggleMenu\AbstractToggleMenu;
