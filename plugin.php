@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Route;
 use Schema;
 use Xpressengine\Plugin\AbstractPlugin;
+use Pers0n4\XePlugin\Message\ToggleMenu\ToggleItem;
 
 class Plugin extends AbstractPlugin
 {
@@ -15,7 +16,7 @@ class Plugin extends AbstractPlugin
      */
     public function boot()
     {
-        // implement code
+        app('xe.pluginRegister')->add(ToggleItem::class);
 
         $this->route();
     }
