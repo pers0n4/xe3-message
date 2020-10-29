@@ -50,6 +50,10 @@ class Controller extends BaseController
     {
         XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
 
-        return XePresenter::make('message::views.show');
+        $message = Message::findOrFail($id);
+
+        return XePresenter::make('message::views.show', [
+            'message' => $message,
+        ]);
     }
 }

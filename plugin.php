@@ -38,6 +38,11 @@ class Plugin extends AbstractPlugin
                 'as' => 'message::store',
                 'uses' => 'Pers0n4\XePlugin\Message\Controller@store',
             ]);
+
+            Route::get('/show/{id}', [
+                'as' => 'message::show',
+                'uses' => 'Pers0n4\XePlugin\Message\Controller@show',
+            ]);
         });
     }
 
