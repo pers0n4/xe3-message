@@ -24,7 +24,7 @@
 
         <div class="field is-grouped is-grouped-right">
             <div class="control">
-                <a href="{{ url()->previous() }}" class="button is-link is-light">Cancel</a>
+                <a href="{{ route('message::index') }}" class="button is-link is-light">Cancel</a>
             </div>
             <div class="control">
                 <button type="submit" class="button is-link">Submit</button>
