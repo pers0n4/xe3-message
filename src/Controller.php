@@ -51,6 +51,10 @@ class Controller extends BaseController
         XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
 
         $message = Message::findOrFail($id);
+        if (!$message->is_read) {
+            $message->is_read = !$message->is_read;
+            $message->save();
+        }
 
         return XePresenter::make('message::views.show', [
             'message' => $message,

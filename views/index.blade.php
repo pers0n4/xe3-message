@@ -10,7 +10,7 @@
     </thead>
     <tbody>
         @foreach ($messages as $message)
-        <tr>
+        <tr @if ($message->is_read) class="has-background-light" @endif>
             <td>
                 <a href="#" data-toggle="xe-page-toggle-menu" data-url="{{ route('toggleMenuPage') }}"
                     data-data='{!! json_encode(['id'=> $message->sender->id, 'type'=>'user'])

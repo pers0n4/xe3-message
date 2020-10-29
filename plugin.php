@@ -74,6 +74,7 @@ class Plugin extends AbstractPlugin
                 $table->string('receiver_id', 36)->index();
                 $table->string('sender_id', 36)->index();
                 $table->text('content');
+                $table->boolean('is_read')->default(false);
                 $table
                     ->timestamp('created_at')
                     ->nullable()
