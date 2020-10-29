@@ -2,7 +2,7 @@
     <div class="column is-4 is-offset-4">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">Sender</label>
+                <label class="label">{{ xe_trans('message::sender') }}</label>
             </div>
             <div class="field-body">
                 <div class="field">
@@ -21,11 +21,11 @@
 
         <div class="field is-grouped is-grouped-right">
             <div class="control">
-                <a href="{{ url()->previous() }}" class="button is-link is-light">Back</a>
+                <a href="{{ url()->previous() }}" class="button is-link is-light">{{ xe_trans('message::back') }}</a>
             </div>
             <div class="control">
                 <a href="{{ route('message::create', ['receiver_id' => $message->sender->id]) }}"
-                    class="button is-link">Reply</a>
+                    class="button is-link">{{ xe_trans('message::reply') }}</a>
             </div>
         </div>
     </div>

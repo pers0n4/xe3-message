@@ -3,9 +3,9 @@
 <table class="table is-fullwidth is-hoverable messages">
     <thead>
         <tr>
-            <th scope="col">발신</th>
-            <th scope="col" class="messages__content">내용</th>
-            <th scope="col" class="messages__date">날짜</th>
+            <th scope="col">{{ xe_trans('message::sender') }}</th>
+            <th scope="col" class="messages__content">{{ xe_trans('message::content') }}</th>
+            <th scope="col" class="messages__date">{{ xe_trans('message::date') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -25,5 +25,5 @@
     </tbody>
 </table>
 @else
-No messages
+{{ xe_trans('message::empty') }}
 @endif

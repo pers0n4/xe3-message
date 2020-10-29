@@ -7,7 +7,7 @@ class ToggleItem extends AbstractToggleMenu
 {
     public function getText()
     {
-        return 'Send message';
+        return xe_trans('message::send');;
     }
 
     public function getType()

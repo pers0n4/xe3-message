@@ -3,6 +3,7 @@ namespace Pers0n4\XePlugin\Message;
 
 use Route;
 use Schema;
+use App\Facades\XeLang;
 use Illuminate\Database\Schema\Blueprint;
 use Xpressengine\Plugin\AbstractPlugin;
 use Pers0n4\XePlugin\Message\ToggleMenu\ToggleItem;
@@ -65,7 +66,11 @@ class Plugin extends AbstractPlugin
      */
     public function install()
     {
-        // implement code
+        XeLang::putFromLangDataSource(
+            'message',
+            base_path('plugins/message/lang/lang.php')
+        );
+
         if (!Schema::hasTable('messages')) {
             Schema::create('messages', function (Blueprint $table) {
                 $table->engine = 'InnoDB';

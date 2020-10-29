@@ -4,7 +4,7 @@
 
         <div class="field is-horizontal">
             <div class="field-label is-normal">
-                <label class="label">Receiver</label>
+                <label class="label">{{ xe_trans('message::receiver') }}</label>
             </div>
             <div class="field-body">
                 <div class="field">
@@ -24,10 +24,10 @@
 
         <div class="field is-grouped is-grouped-right">
             <div class="control">
-                <a href="{{ route('message::index') }}" class="button is-link is-light">Cancel</a>
+                <a href="{{ route('message::index') }}" class="button is-link is-light">{{ xe_trans('message::cancel') }}</a>
             </div>
             <div class="control">
-                <button type="submit" class="button is-link">Submit</button>
+                <button type="submit" class="button is-link">{{ xe_trans('message::submit') }}</button>
             </div>
         </div>
     </form>
