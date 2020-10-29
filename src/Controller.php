@@ -1,23 +1,63 @@
 <?php
 namespace Pers0n4\XePlugin\Message;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Facades\XeUser;
+use App\Http\Controllers\Controller as BaseController;
 use XeFrontend;
 use XePresenter;
-use App\Http\Controllers\Controller as BaseController;
+use Pers0n4\XePlugin\Message\Models\Message;
 
 class Controller extends BaseController
 {
     public function index()
     {
-        $title = 'Message plugin';
+        XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
 
-        // set browser title
-        XeFrontend::title($title);
+        $messages = Message::where('receiver_id', Auth::id())->get();
 
-        // load css file
-        XeFrontend::css(Plugin::asset('assets/style.css'))->load();
+        return XePresenter::make('message::views.index', [
+            'messages' => $messages,
+        ]);
+    }
 
-        // output
-        return XePresenter::make('message::views.index', ['title' => $title]);
+    public function create(Request $request)
+    {
+        XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
+
+        $receiver = XeUser::findOrFail($request->receiver_id);
+
+        return XePresenter::make('message::views.create', [
+            'receiver' => $receiver,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $message = new Message();
+
+        $message->sender_id = Auth::id();
+        $message->receiver_id = $request->receiver;
+        $message->content = $request->content;
+
+        $message->save();
+
+        return redirect()->route('message::index');
+    }
+
+    public function show($id)
+    {
+        XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
+
+        $message = Message::findOrFail($id);
+        if (!$message->is_read) {
+            $message->is_read = !$message->is_read;
+            $message->save();
+        }
+
+        return XePresenter::make('message::views.show', [
+            'message' => $message,
+        ]);
     }
 }

@@ -1,28 +1,35 @@
 {
   "name": "xpressengine-plugin/message",
-  "description": "This Package is Xpressengine Plugin - Message plugin.",
+  "description": "사이트 내에서 메시지를 주고받을 수 있는 플러그인입니다.",
   "keywords": [
     "xpressengine",
-    "plugin"
+    "plugin",
+    "message"
   ],
   "license": "LGPL-3.0-or-later",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "xpressengine-plugin",
   "support": {
-    "email": "input@your.email"
+    "email": "31337.persona@gmail.com"
   },
   "authors": [
     {
-      "name": "input your name",
-      "email": "input@your.email",
-      "homepage": "http://input.your.site",
+      "name": "Dong-Young Kim",
+      "email": "31337.persona@gmail.com",
+      "homepage": "https://github.com/per0sn4",
       "role": "Developer"
     }
   ],
   "extra": {
     "xpressengine": {
-      "title": "Message plugin",
-      "component": {}
+      "title": "메시지",
+      "component": {
+        "user/toggleMenu/pers0n4@message": {
+          "class": "Pers0n4\\XePlugin\\Message\\ToggleMenu\\ToggleItem",
+          "name": "메시지 보내기",
+          "description": "메시지를 주고받을 수 있습니다."
+        }
+      }
     }
   },
   "require": {

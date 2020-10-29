@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@import "../node_modules/bulma/bulma.sass";
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messages {
+  table-layout: fixed;
+
+  p {
+    @include truncate;
+  }
+
+  :link {
+    color: $text;
+  }
+
+  &__sender {
+    display: block;
+    @include truncate;
+  }
+
+  &__content {
+    width: percentage(9/ 12);
+    @include truncate;
+  }
+
+  &__date {
+    width: percentage(2 / 12);
+    @include truncate;
+  }
+}

@@ -2,7 +2,11 @@
 namespace Pers0n4\XePlugin\Message;
 
 use Route;
+use Schema;
+use App\Facades\XeLang;
+use Illuminate\Database\Schema\Blueprint;
 use Xpressengine\Plugin\AbstractPlugin;
+use Pers0n4\XePlugin\Message\ToggleMenu\ToggleItem;
 
 class Plugin extends AbstractPlugin
 {
@@ -13,24 +17,36 @@ class Plugin extends AbstractPlugin
      */
     public function boot()
     {
-        // implement code
+        app('xe.pluginRegister')->add(ToggleItem::class);
 
         $this->route();
     }
 
     protected function route()
     {
-        // implement code
-
-        Route::fixed(
-            $this->getId(),
-            function () {
+        Route::fixed('messages', function () {
+            Route::group(['middleware' => 'auth'], function () {
                 Route::get('/', [
-                    'as' => 'message::index','uses' => 'Pers0n4\XePlugin\Message\Controller@index'
+                    'as' => 'message::index',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@index',
                 ]);
-            }
-        );
 
+                Route::get('/create', [
+                    'as' => 'message::create',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@create',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'message::store',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@store',
+                ]);
+
+                Route::get('/show/{id}', [
+                    'as' => 'message::show',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@show',
+                ]);
+            });
+        });
     }
 
     /**
@@ -52,7 +68,32 @@ class Plugin extends AbstractPlugin
      */
     public function install()
     {
-        // implement code
+        XeLang::putFromLangDataSource(
+            'message',
+            base_path('plugins/message/lang/lang.php')
+        );
+
+        if (!Schema::hasTable('messages')) {
+            Schema::create('messages', function (Blueprint $table) {
+                $table->engine = 'InnoDB';
+
+                $table->string('id', 36);
+                $table->string('receiver_id', 36)->index();
+                $table->string('sender_id', 36)->index();
+                $table->text('content');
+                $table->boolean('is_read')->default(false);
+                $table
+                    ->timestamp('created_at')
+                    ->nullable()
+                    ->index();
+                $table
+                    ->timestamp('updated_at')
+                    ->nullable()
+                    ->index();
+
+                $table->primary('id');
+            });
+        }
     }
 
     /**
