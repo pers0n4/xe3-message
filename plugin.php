@@ -25,25 +25,27 @@ class Plugin extends AbstractPlugin
     protected function route()
     {
         Route::fixed('messages', function () {
-            Route::get('/', [
-                'as' => 'message::index',
-                'uses' => 'Pers0n4\XePlugin\Message\Controller@index',
-            ]);
+            Route::group(['middleware' => 'auth'], function () {
+                Route::get('/', [
+                    'as' => 'message::index',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@index',
+                ]);
 
-            Route::get('/create', [
-                'as' => 'message::create',
-                'uses' => 'Pers0n4\XePlugin\Message\Controller@create',
-            ]);
+                Route::get('/create', [
+                    'as' => 'message::create',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@create',
+                ]);
 
-            Route::post('/', [
-                'as' => 'message::store',
-                'uses' => 'Pers0n4\XePlugin\Message\Controller@store',
-            ]);
+                Route::post('/', [
+                    'as' => 'message::store',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@store',
+                ]);
 
-            Route::get('/show/{id}', [
-                'as' => 'message::show',
-                'uses' => 'Pers0n4\XePlugin\Message\Controller@show',
-            ]);
+                Route::get('/show/{id}', [
+                    'as' => 'message::show',
+                    'uses' => 'Pers0n4\XePlugin\Message\Controller@show',
+                ]);
+            });
         });
     }
 
