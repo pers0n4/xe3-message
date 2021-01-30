@@ -60,4 +60,9 @@ class Controller extends BaseController
             'message' => $message,
         ]);
     }
+
+    public static function getUnreadCount($userId)
+    {
+        return Message::where('receiver_id', $userId)->where('is_read', false)->count();
+    }
 }
