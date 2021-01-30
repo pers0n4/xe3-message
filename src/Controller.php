@@ -15,7 +15,7 @@ class Controller extends BaseController
     {
         XeFrontend::css(Plugin::asset('assets/css/main.css'))->load();
 
-        $messages = Message::where('receiver_id', Auth::id())->get();
+        $messages = Message::where('receiver_id', Auth::id())->orderBy('created_at', 'desc')->get();
 
         return XePresenter::make('message::views.index', [
             'messages' => $messages,
