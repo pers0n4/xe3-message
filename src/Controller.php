@@ -43,7 +43,7 @@ class Controller extends BaseController
 
         $message->save();
 
-        return redirect()->route('message::index');
+        return redirect()->route('message::index')->with('success', 'Sent successfully');
     }
 
     public function show($id)

@@ -1,4 +1,13 @@
 {{ XeFrontend::js('assets/core/xe-ui-component/js/xe-page.js')->appendTo('body')->load() }}
+
+@if (Session::has('success'))
+<div id="message-alert" style="position: relative;">
+    <div class="notification is-success" style="position: absolute; bottom: 4px; width: 100%;">
+        {{ Session::get('success') }}
+    </div>
+</div>
+@endif
+
 @if ($messages->count())
 <table class="table is-fullwidth is-hoverable messages">
     <thead>
@@ -27,3 +36,11 @@
 @else
 {{ xe_trans('message::empty') }}
 @endif
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelector('#message-alert').remove()
+        }, 2000)
+    })
+</script>
